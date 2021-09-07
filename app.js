@@ -10,10 +10,21 @@ const transferToAmountField = document.querySelector("#transfer-to-amount");
 const transferFromAmountField = document.querySelector("#transfer-from-amount");
 const tradeButton = document.querySelector("#trade");
 const depositForm = document.querySelector("#deposit-form")
+let isLoggedIn = false;
+const loginForm = document.querySelector("#login-form")
+const registrationForm = document.querySelector("#registration-form")
+const logoutButton = document.querySelector("#logout")
+const loadRegistrationButton = document.querySelector("#load-register")
+
+const dashboardView = document.querySelector("#screen-dashboard")
+const loginView = document.querySelector("#screen-login")
+const registrationView = document.querySelector("#screen-register")
+
+const loggedInNav = document.querySelector("#logged-in-nav")
+const loggedOutNav = document.querySelector("#logged-out-nav")
 
 
-
-
+console.log(registrationForm)
 
 const addTransferFromOptions = (bitcoin, ethereum, dogecoin, usd) => {
     const portfolioTotals = {
@@ -100,7 +111,6 @@ const savePortfolio = async () => {
             }
         ]
     };
-    console.log(JSON.stringify(portfolio));
     const response = await fetch("http://localhost:8080/api/portfolios", {
         method: "POST",
         headers: {
@@ -203,11 +213,100 @@ const loadPortfolio = async (id) => {
     calculateValue()
 }
 
-loadPortfolio(4)
+const loadLoginScreen = () => {
+    loginView.classList.remove("d-none")
+    dashboardView.classList.add("d-none")
+    registrationView.classList.add("d-none")
+}
 
+const loadPortfolioScreen = (user) => {
+    if (isLoggedIn) {
+        dashboardView.classList.remove("d-none");
+        loginView.classList.add("d-none");
+        registrationView.classList.add("d-none");
+        loadPortfolio(4)
+    } else {
+        loadLoginScreen()
+    }
+}
+
+const verifyUser = async (e) => {
+    e.preventDefault()
+    const users = await fetch("http://localhost:8080/api/users").then((res) => res.json());
+    console.log(users)
+    const username = document.querySelector("#username");
+    const password = document.querySelector("#password");
+    for (user of users) {
+        if (user.username === username.value) {
+            if (user.password === password.value) {
+                username.value = "";
+                password.value = "";
+                toggleLoginStatus()
+                loadPortfolioScreen(user)
+                return;
+            }
+        }
+    }
+    console.log("Wrong username or password")
+}
+
+const logout = (e) => {
+    e.preventDefault;
+    isLoggedIn = false;
+    toggleLoginStatus()
+    loadLoginScreen();
+}
+
+const toggleLoginStatus = () => {
+    isLoggedIn = !isLoggedIn
+    loggedInNav.classList.toggle("d-none")
+    loggedOutNav.classList.toggle("d-none")
+}
+
+const loadRegistrationScreen = (e) => {
+    registrationView.classList.remove("d-none")
+    loginView.classList.add("d-none")
+    dashboardView.classList.add("d-none")
+}
+
+const registerNewUser = async (e) => {
+    e.preventDefault()
+    const firstName = document.querySelector("#firstname").value
+    const lastName = document.querySelector("#lastname").value
+    const email = document.querySelector("#email").value
+    const username = document.querySelector("#newUsername").value
+    const password = document.querySelector("#newPassword").value
+    const newUser = {
+        firstName,
+        lastName,
+        email,
+        username,
+        password
+    }
+
+    const user = await fetch("http://localhost:8080/api/users", {
+        method: "POST",
+        headers: {
+            'Content-Type': "application/json;charset=utf-8"
+        },
+        body: JSON.stringify(newUser)
+    })
+        .then((res) => res.json());
+    if (user) {
+        toggleLoginStatus()
+        loadPortfolioScreen(user)
+    } else {
+        console.log("Something went wrong")
+        loadLoginScreen()
+    }
+}
 
 transferFromAmountField.addEventListener("keyup", convertCrypto);
 tradeButton.addEventListener('click', makeTrade);
 depositForm.addEventListener('submit', makeDeposit);
+loginForm.addEventListener('submit', verifyUser);
+registrationForm.addEventListener('submit', registerNewUser);
+logoutButton.addEventListener('click', logout)
+loadRegistrationButton.addEventListener('click', loadRegistrationScreen)
 
 // calculator.addEventListener("click", calculateValue)

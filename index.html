@@ -11,107 +11,202 @@
     <title>CryptoKnight</title>
 </head>
 
-<body class="bg-gradient">
+<body>
+    <div class="container-fluid px-0 d-flex flex-column mb-3" id="page-content">
 
-    <!-- Navbar start -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-success mb-3">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    <a class="nav-link" href="#">Portfolio</a>
-                    <a class="nav-link" href="#">Profile</a>
+        <!-- Navbar start -->
+        <div id="logged-in-nav" class="d-none">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-success mb-3">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">CryptoKnight</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav me-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="#">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Profile</a>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item ms-auto">
+                                <a id="logout" class="nav-link ms-auto" href="#">Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <div id="logged-out-nav">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-success mb-3">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">CryptoKnight</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                        <div class="navbar-nav">
+                            <a class="nav-link" aria-current="page" href="#">Login</a>
+                            <a class="nav-link" aria-current="page" href="#">Register</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <!-- Navbar end -->
+
+        <!-- Login screen -->
+
+        <div id="screen-login" class="">
+            <div class="card col-4 offset-4">
+                <img src="https://images.unsplash.com/photo-1627454822466-0b05090cb737?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=752&q=80"
+                    class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Login</h5>
+                    <form id="login-form">
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username:</label>
+                            <input autofocus class="form-control" type="text" name="username" id="username"
+                                placeholder="Enter your username...">
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password:</label>
+                            <input class="form-control" type="password" name="password" id="password"
+                                placeholder="Enter your password...">
+                        </div>
+                        <button class="btn btn-sm btn-success d-inline" type="submit">Login</button>
+                        <button id="load-register" class="btn btn-sm btn-secondary d-inline">Register</button>
+                    </form>
                 </div>
             </div>
         </div>
-    </nav>
-    <!-- Navbar end -->
 
-    <div id="header" class="text-center mb-3">
-        <h1>Welcome to CryptoKnight</h1>
-    </div>
+        <!-- login screen end -->
 
-    <div id="table-container" class="container-fluid d-flex mb-5">
-
-        <div class="card col-4 offset-1 border border-dark shadow">
-            <div class="card-header bg-success">
-                <h2 class="text-light" id="portfolio-name"></h2>
+        <!-- Registration Screen -->
+        <div id="screen-register" class="d-none">
+            <div class="container-fluid col-4 offset-4">
+                <h1>Registering New User</h1>
+                <form id="registration-form" class="">
+                    <div class="mb-3">
+                        <label class="form-label" for="firstname">First Name:</label>
+                        <input class="form-control" type="text" name="firstname" id="firstname" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="lastname">Last Name:</label>
+                        <input class="form-control" type="text" name="lastname" id="lastname" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="email">Email:</label>
+                        <input class="form-control" type="email" name="email" id="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="username">Username:</label>
+                        <input class="form-control" type="text" name="username" id="newUsername" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="password">Password:</label>
+                        <input class="form-control" type="password" name="password" id="newPassword" required>
+                    </div>
+                    <div class="mb-3">
+                        <button class="btn btn-sm btn-success" type="submit">Register</button>
+                    </div>
+                </form>
             </div>
-            <div class="card-header">
-                <h3>Total Value: $<span id="total-value"></span></h3>
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">Bitcoin: <span id="total-bitcoin">0</span></li>
-                <li class="list-group-item">Ethereum: <span id="total-ethereum">0</span></li>
-                <li class="list-group-item">Dogecoin: <span id="total-dogecoin">0</span></li>
-                <li class="list-group-item">USD: $<span id="total-usd">0</span></li>
-            </ul>
         </div>
+        <!-- Registration Screen end -->
 
-        <div class="card col-4 offset-1 border border-dark shadow">
-            <div class="card-header bg-success">
-                <h2 class="text-light">Manage Your Assets</h2>
+        <!-- User Dashboard -->
+
+        <div id="screen-dashboard" class="d-none">
+            <div id="header" class="text-center mb-3">
+                <h1>Welcome to CryptoKnight</h1>
             </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                    <h4 class="text-center">Make a deposit</h4>
 
-                    <!-- Deposit form -->
-                    <form id="deposit-form">
-                        <div class="input-group mb-3">
-                            <span class="input-group-text">$</span>
-                            <input type="number" class="form-control" id="deposit-amount" placeholder="Deposit amount">
-                        </div>
-                        <button type="submit" class="btn btn-sm btn-primary">Deposit</button>
-                    </form>
-                    <!-- Deposit form end -->
+            <div id="table-container" class="container-fluid d-flex">
 
-                </li>
-                <li class="list-group-item">
-                    <h4 class="text-center">
-                        Make a trade
-                    </h4>
-                    <form>
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <select class="col-4 form-select" name="transfer-from" id="transfer-from">
+                <div class="card col-4 offset-1 border border-dark shadow">
+                    <div class="card-header bg-success">
+                        <h2 class="text-light" id="portfolio-name"></h2>
+                    </div>
+                    <div class="card-header">
+                        <h3>Total Value: $<span id="total-value"></span></h3>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Bitcoin: <span id="total-bitcoin">0</span></li>
+                        <li class="list-group-item">Ethereum: <span id="total-ethereum">0</span></li>
+                        <li class="list-group-item">Dogecoin: <span id="total-dogecoin">0</span></li>
+                        <li class="list-group-item">USD: $<span id="total-usd">0</span></li>
+                    </ul>
+                </div>
 
-                            </select>
-                            <p class="mb-0">to</p>
-                            <select class="form-select" name="transfer-to" id="transfer-to">
-                                <option value="bitcoin">Bitcoin</option>
-                                <option value="ethereum">Ethereum</option>
-                                <option value="dogecoin">Dogecoin</option>
-                                <option value="usd" selected>USD</option>
-                            </select>
-                        </div>
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <input class="form-control" type="number" name="transfer-from-amount"
-                                id="transfer-from-amount" placeholder="Amount">
-                            <input class="form-control" type="number" name="transfer-to-amount" id="transfer-to-amount"
-                                placeholder="Amount" readonly>
-                        </div>
-                        <button id="trade" type="submit" class="btn btn-sm btn-success">Trade!</button>
-                    </form>
-                </li>
-            </ul>
+                <div class="card col-4 offset-1 border border-dark shadow">
+                    <div class="card-header bg-success">
+                        <h2 class="text-light">Manage Your Assets</h2>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <h4 class="text-center">Make a deposit</h4>
+
+                            <!-- Deposit form -->
+                            <form id="deposit-form">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text">$</span>
+                                    <input type="number" class="form-control" id="deposit-amount"
+                                        placeholder="Deposit amount">
+                                </div>
+                                <button type="submit" class="btn btn-sm btn-primary">Deposit</button>
+                            </form>
+                            <!-- Deposit form end -->
+
+                        </li>
+                        <li class="list-group-item">
+                            <h4 class="text-center">
+                                Make a trade
+                            </h4>
+                            <form>
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <select class="col-4 form-select" name="transfer-from" id="transfer-from">
+
+                                    </select>
+                                    <p class="mb-0">to</p>
+                                    <select class="form-select" name="transfer-to" id="transfer-to">
+                                        <option value="bitcoin">Bitcoin</option>
+                                        <option value="ethereum">Ethereum</option>
+                                        <option value="dogecoin">Dogecoin</option>
+                                        <option value="usd" selected>USD</option>
+                                    </select>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <input class="form-control" type="number" name="transfer-from-amount"
+                                        id="transfer-from-amount" placeholder="Amount">
+                                    <input class="form-control" type="number" name="transfer-to-amount"
+                                        id="transfer-to-amount" placeholder="Amount" readonly>
+                                </div>
+                                <button id="trade" type="submit" class="btn btn-sm btn-success">Trade!</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
         </div>
-
     </div>
-
-    <!-- <button class="btn btn-lg btn-primary" id="calculate-value">Get Value</button> -->
-
+    <!-- User dashboard end -->
 
     <footer class="footer bg-dark py-3 mt-auto">
         <div class="container">
             <span class="text-muted">Test your crypto trading skills with no risk.</span>
         </div>
     </footer>
-
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
         crossorigin="anonymous"></script>
