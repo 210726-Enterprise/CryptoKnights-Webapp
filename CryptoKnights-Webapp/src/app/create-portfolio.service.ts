@@ -11,7 +11,7 @@ import { Portfolio } from './portfolio';
 })
 export class CreatePortfolioService 
 {
-  private portfolioURL = "api/portfolios"
+  private portfolioURL = "http://localhost:8080/api/portfolios"
 
   httpOptions = 
   {
@@ -22,6 +22,7 @@ export class CreatePortfolioService
 
   addPortfolio(portfolio: Portfolio): Observable<Portfolio> 
   {
+    console.log("doing things");
     return this.http.post<Portfolio>(this.portfolioURL, portfolio, this.httpOptions)
     .pipe(
       catchError(this.handleError<Portfolio>('addPortfolio'))
