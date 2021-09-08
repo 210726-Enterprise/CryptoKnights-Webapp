@@ -1,8 +1,10 @@
 <h3>Create a New Portfolio</h3>
 
-<form id="New Portfolio">
-    <label for='portfolioName'>Input name for portfolio here: </label>
-    <input id='portfolioName' type='text' name='portfolioName'/>
+<div>
+    <label for="new-portfolio">Input name for portfolio here: </label>
+    <input id="new-portfolio" #portfolioName />
     <br><br>
-    <input type='submit' value='Create'/>
-</form>
+    <button class="add-button" (click)="add(portfolioName.value); portfolioName.value=''">
+      Add Portfolio
+    </button>
+</div>

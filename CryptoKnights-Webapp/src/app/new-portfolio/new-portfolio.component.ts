@@ -15,7 +15,7 @@ export class NewPortfolioComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  addPortfolio(name: string): void 
+  add(name: string): void 
   {
     name = name.trim();
     if (!name) 
