@@ -1,7 +1,7 @@
 export interface Portfolio 
 {
     id: number;
-    name: string;
+    porfolio_name: string;
     bitcoin: number;
     ethereum: number;
     dogecoin: number;
