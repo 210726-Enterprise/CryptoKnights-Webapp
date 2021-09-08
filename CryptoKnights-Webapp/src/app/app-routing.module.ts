@@ -5,7 +5,7 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { TestComponent } from './test/test.component';
 import { TestHomeComponent } from './test-home/test-home.component';
 
-import { LoginGuard } from './login.guard';
+import { LoginGuard } from './auth/login.guard';
 
 const routes: Routes = [
   { path: '', component: TestHomeComponent },
