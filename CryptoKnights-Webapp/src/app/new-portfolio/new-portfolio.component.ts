@@ -15,13 +15,14 @@ export class NewPortfolioComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  add(name: string): void 
+  add(porfolio_name: string): void 
   {
-    name = name.trim();
-    if (!name) 
+    porfolio_name = porfolio_name.trim();
+    if (!porfolio_name) 
     { 
       return; 
     }
-    this.createPortfolioService.addPortfolio({ name } as Portfolio)
+    this.createPortfolioService.addPortfolio({ porfolio_name } as Portfolio)
+      .subscribe(portfolio => {console.log(portfolio)});
   }
 }
