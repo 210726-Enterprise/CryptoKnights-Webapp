@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { CreatePortfolioService } from '../create-portfolio.service';
+import { Portfolio } from '../portfolio';
+
 @Component({
   selector: 'app-new-portfolio',
   templateUrl: './new-portfolio.component.html',
@@ -7,9 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewPortfolioComponent implements OnInit {
 
-  constructor() { }
+  constructor(private createPortfolioService : CreatePortfolioService) { }
 
   ngOnInit(): void {
   }
 
+  addPortfolio(name: string): void 
+  {
+    name = name.trim();
+    if (!name) 
+    { 
+      return; 
+    }
+    this.createPortfolioService.addPortfolio({ name } as Portfolio)
+  }
 }
