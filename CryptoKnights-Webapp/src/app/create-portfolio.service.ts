@@ -11,7 +11,7 @@ import { Portfolio } from './portfolio';
 })
 export class CreatePortfolioService 
 {
-  private portfolioURL = "http://localhost:8080/api/portfolios"
+  private portfolioURL = "http://cryptoknight-webapp.s3-website.us-east-2.amazonaws.com/portfolios"
 
   httpOptions = 
   {
