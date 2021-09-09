@@ -30,17 +30,24 @@ export class LoginGuardService
     console.log(usernameURL);
 
     this.http.get<User>(usernameURL,this.httpOptions)
-      .subscribe(user => this.currUser = user);
-    if(this.currUser && this.currUser.password === password)
-    {
-      this.isLoggedIn = true;
-      const navigationExtras: NavigationExtras = 
-      {
-        queryParamsHandling: 'preserve',
-        preserveFragment: true
-      };
-      this.router.navigate([this.redirectUrl], navigationExtras);
-    }
+      .subscribe(foundUser => 
+        {
+          console.log(foundUser);
+
+          if(foundUser && foundUser.password === password)
+          {
+            console.log("hi");
+            this.currUser = foundUser;
+
+            this.isLoggedIn = true;
+            const navigationExtras: NavigationExtras = 
+            {
+              queryParamsHandling: 'preserve',
+              preserveFragment: true
+            };
+            this.router.navigate([this.redirectUrl], navigationExtras);
+          }
+        });
   }
 
   logout(): void {
