@@ -10,6 +10,7 @@ import { PortfolioDetailsService } from './portfolio-details.service';
 import { TransactionCardComponent } from './transaction-card/transaction-card.component';
 import { TransactionCardService } from './transaction-card.service';
 import { FormsModule } from '@angular/forms';
+import { PortfolioViewComponent } from './portfolio-view/portfolio-view.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { FormsModule } from '@angular/forms';
     AppComponent,
     NavbarComponent,
     PortfolioDetailsComponent,
-    TransactionCardComponent
+    TransactionCardComponent,
+    PortfolioViewComponent
   ],
   imports: [
     BrowserModule,

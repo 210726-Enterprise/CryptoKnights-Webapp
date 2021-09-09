@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Portfolio } from './portfolio';
+import { Transaction } from './transaction';
 
 @Injectable({
   providedIn: 'root'
@@ -26,12 +27,7 @@ export class PortfolioService {
     return this.http.get<Portfolio>(this.url);
   }
 
-  updatePotfolio(portfolio: Portfolio) {
-    console.log("In update")
-    console.log(portfolio)
-    this.sendUpdate(portfolio)
-    return this.http.put<Portfolio>("http://localhost:8080/api/portfolios/", portfolio)
-  }
+
 
   caclulatePortfolioValue() {
     this.getCryptoValues().subscribe(data => this.cryptoValues = data);
@@ -68,5 +64,28 @@ export class PortfolioService {
       return buyingPower / inCurrencyValue
   }
   }
+
+  updatePotfolio(portfolio: Portfolio) {
+    this.sendUpdate(portfolio)
+    console.log(portfolio)
+    return this.http.put<Portfolio>("http://localhost:8080/api/portfolios/", portfolio)
+  }
+
+
+  logTransaction(inCurrency: string, inCurrencyAmount: number, outCurrency: string, outCurrencyAmount: number, portfolio: Portfolio) {
+    const transaction = {
+      transactionInCurrency: inCurrency,
+      transactionInAmount: inCurrencyAmount,
+      transactionOutCurrency: outCurrency,
+      transactionOutAmount: outCurrencyAmount,
+      portfolio: portfolio
+    }
+
+    console.log(transaction)
+
+    return this.http.post<Transaction>("http://localhost:8080/api/api/", transaction)
+
+  }
+
 
 }

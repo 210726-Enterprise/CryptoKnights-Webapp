@@ -1,19 +1,7 @@
-<div class="card col-4 offset-1 border border-success border-3 shadow">
+<div>
     <div class="card-header bg-success">
     </div>
     <ul class="list-group list-group-flush">
-        <li class="list-group-item">
-            <h4 class="text-center">Make a deposit</h4>
-
-            <!-- Deposit form -->
-            <div class="input-group mb-3">
-                <span class="input-group-text">$</span>
-                <input type="number" class="form-control" [(ngModel)]="depositAmount" placeholder="Deposit amount">
-            </div>
-            <button (click)="makeDeposit(depositAmount)" class="btn btn-sm btn-primary">Deposit</button>
-            <!-- Deposit form end -->
-
-        </li>
         <li class="list-group-item">
             <h4 class="text-center">
                 Make a trade
@@ -43,6 +31,31 @@
                     placeholder="Amount" [(ngModel)]="inCurrencyAmount" readonly>
             </div>
             <button id="trade" (click)="makeTrade()" class="btn btn-sm btn-success">Trade!</button>
+        </li>
+        <li class="list-group-item">
+            <h4 class="text-center">Make a deposit</h4>
+
+            <!-- Deposit form -->
+            <div class="input-group mb-3">
+                <span class="input-group-text">$</span>
+                <input type="number" class="form-control" [(ngModel)]="depositAmount" placeholder="Deposit amount">
+            </div>
+            <button (click)="makeDeposit()" class="btn btn-sm btn-primary">Deposit</button>
+            <!-- Deposit form end -->
+
+        </li>
+        <li class="list-group-item">
+            <h4 class="text-center">Make a Withdrawal</h4>
+
+            <!-- Deposit form -->
+            <div class="input-group mb-3">
+                <span class="input-group-text">$</span>
+                <input type="number" class="form-control" [(ngModel)]="withdrawalAmount"
+                    placeholder="Withdrawal amount">
+            </div>
+            <button (click)="makeWithdrawal()" class="btn btn-sm btn-primary">Withdraw</button>
+            <!-- Deposit form end -->
+
         </li>
     </ul>
     <div class="card-header bg-success">

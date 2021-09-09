@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Portfolio } from '../portfolio';
 import { PortfolioService } from '../portfolio.service';
 import { TransactionCardService } from '../transaction-card.service';
+import { User } from '../User';
 
 @Component({
   selector: 'app-transaction-card',
@@ -18,16 +19,23 @@ export class TransactionCardComponent implements OnInit {
 
   portfolio: Portfolio;
   depositAmount: number = 0;
+  withdrawalAmount: number = 0;
   inCurrency: string;
   outCurrency: string;
   inCurrencyAmount: number;
   outCurrencyAmount: number;
+  // currentUser: User;
 
-  makeDeposit(depositAmount: number) {
-    this.portfolio.usd += depositAmount;
+  makeDeposit() {
+    this.portfolio.usd += this.depositAmount;
     this.service.updatePotfolio(this.portfolio).subscribe(data => this.portfolio = data);
     this.depositAmount = 0;
+  }
 
+  makeWithdrawal() {
+    this.portfolio.usd -= this.withdrawalAmount;
+    this.service.updatePotfolio(this.portfolio).subscribe(data => this.portfolio = data);
+    this.depositAmount = 0;
   }
 
   async setInCurrencyAmount() {
@@ -42,6 +50,8 @@ export class TransactionCardComponent implements OnInit {
     this.portfolio[this.outCurrency] = this.portfolio[this.outCurrency] - this.outCurrencyAmount;
     console.log(this.portfolio);
     this.service.updatePotfolio(this.portfolio).subscribe(data => this.portfolio = data);
+
+    this.service.logTransaction(this.inCurrency, this.inCurrencyAmount, this.outCurrency, this.outCurrencyAmount, this.portfolio).subscribe(data => console.log(data))
   }
 
 }

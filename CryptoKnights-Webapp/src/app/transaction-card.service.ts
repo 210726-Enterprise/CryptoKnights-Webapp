@@ -14,4 +14,8 @@ export class TransactionCardService {
     return this.pService.getPortfolios()
   }
 
+  makeDeposit(portfolio: Portfolio, depositAmount: number) {
+    
+  }
+
 }
