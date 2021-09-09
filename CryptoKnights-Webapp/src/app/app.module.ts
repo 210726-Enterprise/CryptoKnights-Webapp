@@ -10,6 +10,7 @@ import { NewPortfolioComponent } from './new-portfolio/new-portfolio.component';
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
     TestComponent,
     TestHomeComponent,
     NewPortfolioComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
