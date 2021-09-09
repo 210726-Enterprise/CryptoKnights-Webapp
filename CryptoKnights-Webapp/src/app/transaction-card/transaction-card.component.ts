@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Portfolio } from '../portfolio';
 import { PortfolioService } from '../portfolio.service';
-import { TransactionCardService } from '../transaction-card.service';
 import { User } from '../User';
 
 @Component({

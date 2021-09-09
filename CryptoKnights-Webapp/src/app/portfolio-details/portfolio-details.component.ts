@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Portfolio } from '../portfolio';
-import { PortfolioDetailsService } from '../portfolio-details.service';
 import { PortfolioService } from '../portfolio.service';
 import { Transaction } from '../transaction';
 
