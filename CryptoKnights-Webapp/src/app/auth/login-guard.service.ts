@@ -11,7 +11,7 @@ import { User } from '../user';
 })
 export class LoginGuardService 
 {
-  private usersURL = "http://localhost:8080/api/users/username/"
+  private usersURL = "http://cryptoknight-webapp.s3-website.us-east-2.amazonaws.com/users/username/"
 
   httpOptions = 
   {

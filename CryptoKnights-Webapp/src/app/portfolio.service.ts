@@ -9,7 +9,7 @@ import { Transaction } from './transaction';
 })
 export class PortfolioService {
 
-  private url: string = `http://localhost:8080/api/portfolios/1`
+  private url: string = `http://cryptoknight-webapp.s3-website.us-east-2.amazonaws.com/portfolios/1`
   private portfolioState = new Subject<any>();
   private cryptoValues: any;
 

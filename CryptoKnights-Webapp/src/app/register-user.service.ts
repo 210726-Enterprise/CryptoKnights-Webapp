@@ -9,7 +9,7 @@ export class RegisterUserService {
 
   async saveUser(newUser: { username: string; password: string; firstName: string; lastName: string; email: string; }) {
     console.log("in here")
-    const user = await fetch("http://localhost:8080/api/users/", {
+    const user = await fetch("http://cryptoknight-webapp.s3-website.us-east-2.amazonaws.com/users/", {
       method: "POST",
       headers: {
         'Content-Type': "application/json;charset=utf-8"
