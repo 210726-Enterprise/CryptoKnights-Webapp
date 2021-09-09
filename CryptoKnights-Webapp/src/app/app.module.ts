@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { PortfolioService } from './portfolio.service';
 import { RegisterUserComponent } from './register-user/register-user.component';
 import { RegisterUserService } from './register-user.service';
+import { PortfolioViewComponent } from './portfolio-view/portfolio-view.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { RegisterUserService } from './register-user.service';
     NavbarComponent,
     PortfolioDetailsComponent,
     TransactionCardComponent,
-    RegisterUserComponent
+    RegisterUserComponent,
+    PortfolioViewComponent
   ],
   imports: [
     BrowserModule,
