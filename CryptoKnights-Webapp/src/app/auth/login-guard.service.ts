@@ -52,5 +52,7 @@ export class LoginGuardService
 
   logout(): void {
     this.isLoggedIn = false;
+    this.currUser = undefined;
+    this.router.navigate(['']);
   }
 }
