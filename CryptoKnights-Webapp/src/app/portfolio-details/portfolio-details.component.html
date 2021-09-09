@@ -1,0 +1,17 @@
+<div>
+    <div class="card-header bg-success">
+    </div>
+    <div class="card-header">
+        <h3>Total Value:
+            {{cryptoValues.bitcoin.usd + cryptoValues.ethereum.usd + cryptoValues.dogecoin.usd + portfolio.usd | currency: "USD"}}
+        </h3>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">Bitcoin: {{portfolio.bitcoin}}</li>
+        <li class="list-group-item">Ethereum: {{portfolio.ethereum}}</li>
+        <li class="list-group-item">Dogecoin: {{portfolio.dogecoin}}</li>
+        <li class="list-group-item">USD: ${{portfolio.usd}}</li>
+    </ul>
+    <div class="card-footer bg-success">
+    </div>
+</div>
