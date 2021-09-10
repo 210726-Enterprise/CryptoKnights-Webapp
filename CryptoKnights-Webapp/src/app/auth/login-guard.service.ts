@@ -11,8 +11,8 @@ import { User } from '../user';
 })
 export class LoginGuardService 
 {
-  // private usersURL = "http://cryptoknight2-env.eba-3uzzfaem.us-east-2.elasticbeanstalk.com/users/username/"
-  private usersURL = "http://localhost:8080/api/users/username/"
+  private usersURL = "http://cryptoknight2-env.eba-3uzzfaem.us-east-2.elasticbeanstalk.com/users/username/"
+  // private usersURL = "http://localhost:8080/api/users/username/"
   
   httpOptions = 
   {
