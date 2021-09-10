@@ -10,7 +10,6 @@ import { User } from './user';
 })
 export class PortfolioService {
 
-
   private portfolioState = new Subject<any>();
   private cryptoValues: any;
 
