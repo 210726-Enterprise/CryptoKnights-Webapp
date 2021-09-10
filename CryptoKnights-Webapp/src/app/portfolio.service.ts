@@ -71,7 +71,7 @@ export class PortfolioService {
   updatePotfolio(portfolio: Portfolio) {
     this.sendUpdate(portfolio)
     console.log(portfolio)
-    return this.http.put<Portfolio>("http://localhost:8080/api/portfolios/", portfolio)
+    return this.http.put<Portfolio>("http://cryptoknight2-env.eba-3uzzfaem.us-east-2.elasticbeanstalk.com/portfolios", portfolio)
   }
 
 
@@ -83,6 +83,6 @@ export class PortfolioService {
       transactionOutAmount: outCurrencyAmount,
       portfolio: portfolio
     }
-    return this.http.post<Transaction>("http://localhost:8080/api/api/", transaction)
+    return this.http.post<Transaction>("http://cryptoknight2-env.eba-3uzzfaem.us-east-2.elasticbeanstalk.com/transactions", transaction)
   }
 }
