@@ -1,5 +1,3 @@
-import { User } from "./user";
-
 export interface Portfolio {
     portfolioId: number;
     porfolio_name: string;

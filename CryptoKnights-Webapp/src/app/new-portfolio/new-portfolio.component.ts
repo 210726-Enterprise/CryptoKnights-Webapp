@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NavigationExtras, Router } from '@angular/router';
+import { LoginGuardService } from '../auth/login-guard.service';
 
 import { CreatePortfolioService } from '../create-portfolio.service';
 import { Portfolio } from '../portfolio';
@@ -10,10 +12,12 @@ import { Portfolio } from '../portfolio';
 })
 export class NewPortfolioComponent implements OnInit {
 
-  constructor(private createPortfolioService : CreatePortfolioService) { }
+  constructor(private createPortfolioService : CreatePortfolioService, private loginGuard: LoginGuardService, public router: Router) { }
 
   ngOnInit(): void {
   }
+
+  redirectUrl: string | null = "/user";
 
   add(porfolio_name: string): void 
   {
@@ -22,7 +26,19 @@ export class NewPortfolioComponent implements OnInit {
     { 
       return; 
     }
-    this.createPortfolioService.addPortfolio({ porfolio_name } as unknown as Portfolio)
-      .subscribe(portfolio => {console.log(portfolio)});
+    const users = [];
+    users.push(this.loginGuard.currUser?.userId);
+    this.createPortfolioService.addPortfolio({ porfolio_name, users } as unknown as Portfolio)
+      .subscribe(portfolio => 
+        {
+          console.log(portfolio);
+
+          const navigationExtras: NavigationExtras = 
+            {
+              queryParamsHandling: 'preserve',
+              preserveFragment: true
+            };
+          this.router.navigate([this.redirectUrl], navigationExtras);
+        });
   }
 }

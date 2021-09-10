@@ -26,6 +26,11 @@ export class CreatePortfolioService
   addPortfolio(portfolio: Portfolio): Observable<Portfolio> 
   {
     console.log("doing things");
+    // const portfolio = {
+    //   portfolio_name: portfolioName,
+    //   user: users
+    // }
+    console.log(portfolio);
     return this.http.post<Portfolio>(this.portfolioURL, portfolio, this.httpOptions)
     .pipe(
       catchError(this.handleError<Portfolio>('addPortfolio'))
