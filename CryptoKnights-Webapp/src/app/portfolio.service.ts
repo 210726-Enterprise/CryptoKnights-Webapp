@@ -29,8 +29,8 @@ export class PortfolioService {
   }
 
   getPortfolio(id: Number): Observable<Portfolio> {
-    // const url = `http://cryptoknight2-env.eba-3uzzfaem.us-east-2.elasticbeanstalk.com/portfolios/${id}`
-    const url = `http://localhost:8080/api/portfolios/${id}`
+    const url = `http://cryptoknight2-env.eba-3uzzfaem.us-east-2.elasticbeanstalk.com/portfolios/${id}`
+    // const url = `http://localhost:8080/api/portfolios/${id}`
     return this.http.get<Portfolio>(url);
   }
 
@@ -83,7 +83,7 @@ export class PortfolioService {
   }
 
 
-  logTransaction(inCurrency: string, inCurrencyAmount: number, outCurrency: string, outCurrencyAmount: number, portfolio: Portfolio) {
+  logTransaction(inCurrency: string, inCurrencyAmount: number, outCurrency: string, outCurrencyAmount: number, portfolio: number) {
     const transaction = {
       transactionInCurrency: inCurrency,
       transactionInAmount: inCurrencyAmount,

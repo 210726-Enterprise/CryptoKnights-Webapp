@@ -53,7 +53,7 @@ export class TransactionCardComponent implements OnInit {
     console.log(this.portfolio);
     this.service.updatePotfolio(this.portfolio).subscribe(data => this.portfolio = data);
 
-    this.service.logTransaction(this.inCurrency, this.inCurrencyAmount, this.outCurrency, this.outCurrencyAmount, this.portfolio).subscribe(data => console.log(data))
+    this.service.logTransaction(this.inCurrency, this.inCurrencyAmount, this.outCurrency, this.outCurrencyAmount, this.portfolio.portfolioId).subscribe(data => console.log(data))
   }
 
 }

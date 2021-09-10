@@ -1,6 +1,7 @@
 <app-navbar></app-navbar>
 <div class="container mb-3">
     <h1>Viewing Portfolios for {{user.username}}</h1>
+    <a routerLink="/create-portfolio" class="btn btn-success">Create New Portfolio</a>
 </div>
 <div class="container d-flex flex-wrap align-items-start">
     <div *ngFor="let p of portfolios" class="w-25 card m-2">
