@@ -1,0 +1,24 @@
+version: 0.2
+
+env:
+    variables:
+        CACHE_CONTROL: "86400"
+        S3_BUCKET: "{{S3_BUCKET}}"
+        BUILD_FOLDER: "dist"
+phases:
+  install:
+    runtime-versions:
+        nodejs: 10
+    commands:
+        - echo Installing source NPM dependencies...
+        - cd CryptoKnights-Webapp && npm install
+        - npm install -g @angular/cli
+  build:
+    commands:
+        - echo Build started 
+        - ng build
+artifacts:
+    files:
+        - '**/*'
+    base-directory: 'CryptoKnights-Webapp/dist*'
+    discard-paths: yes
