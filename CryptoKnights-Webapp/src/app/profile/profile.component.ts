@@ -17,20 +17,23 @@ export class ProfileComponent implements OnInit {
 
     this.user = this.loginService.getCurrentUser();
     const userPortfolioIds: number[] = [];
+
     for(let port of this.user.portfolios) {
       userPortfolioIds.push(port.portfolioId)
+      // this.pService.getPortfolio(port).subscribe(data => this.portfolios.push(data))
     }
 
     console.log(userPortfolioIds)
 
     this.pService.getAllPortfolio().subscribe(data => {
       this.portfolios = data.filter(p => {
-        return userPortfolioIds.includes(p.portfolioId);
+        console.log(p.portfolioId)
+        return this.user.portfolios.includes(p.portfolioId);
       })
     })
   }
 
-  portfolios: Portfolio[];
+  portfolios: Portfolio[] = [];
   user: any;
 
   

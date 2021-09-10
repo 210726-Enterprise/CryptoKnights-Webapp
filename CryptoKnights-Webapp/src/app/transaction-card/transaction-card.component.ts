@@ -27,7 +27,9 @@ export class TransactionCardComponent implements OnInit {
   // currentUser: User;
 
   makeDeposit() {
+    
     this.portfolio.usd += this.depositAmount;
+    // this.portfolio.users = userArray;
     this.service.updatePotfolio(this.portfolio).subscribe(data => this.portfolio = data);
     this.depositAmount = 0;
   }
@@ -35,7 +37,7 @@ export class TransactionCardComponent implements OnInit {
   makeWithdrawal() {
     this.portfolio.usd -= this.withdrawalAmount;
     this.service.updatePotfolio(this.portfolio).subscribe(data => this.portfolio = data);
-    this.depositAmount = 0;
+    this.withdrawalAmount = 0;
   }
 
   async setInCurrencyAmount() {

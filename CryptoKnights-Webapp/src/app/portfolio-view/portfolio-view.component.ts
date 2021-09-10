@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { LoginGuardService } from '../auth/login-guard.service';
 import { Portfolio } from '../portfolio';
 import { PortfolioService } from '../portfolio.service';
 
