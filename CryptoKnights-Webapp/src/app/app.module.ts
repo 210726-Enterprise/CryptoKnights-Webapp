@@ -11,6 +11,7 @@ import { NewPortfolioComponent } from './new-portfolio/new-portfolio.component';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
+import { TransactionViewComponent } from './transaction-view/transaction-view.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { LoginComponent } from './login/login.component';
     TestHomeComponent,
     NewPortfolioComponent,
     LoginComponent,
+    TransactionViewComponent,
   ],
   imports: [
     BrowserModule,
