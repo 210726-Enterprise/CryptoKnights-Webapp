@@ -21,8 +21,8 @@ export class PortfolioService {
   }
 
   getUserById(id: number) {
-    return this.http.get<User>(`http://cryptoknight2-env.eba-3uzzfaem.us-east-2.elasticbeanstalk.com/users/${id}`)
-    // return this.http.get<User>(`http://localhost:8080/api/users/${id}`)
+    // return this.http.get<User>(`http://cryptoknight2-env.eba-3uzzfaem.us-east-2.elasticbeanstalk.com/users/${id}`)
+    return this.http.get<User>(`http://localhost:8080/api/users/${id}`)
   }
 
   getUpdate(): Observable<any> {
@@ -36,8 +36,8 @@ export class PortfolioService {
   }
 
   getAllPortfolio(): Observable<Portfolio[]> {
-    // return this.http.get<Portfolio[]>("http://localhost:8080/api/portfolios");
-    return this.http.get<Portfolio[]>("http://cryptoknight2-env.eba-3uzzfaem.us-east-2.elasticbeanstalk.com/portfolios");
+    return this.http.get<Portfolio[]>("http://localhost:8080/api/portfolios");
+    // return this.http.get<Portfolio[]>("http://cryptoknight2-env.eba-3uzzfaem.us-east-2.elasticbeanstalk.com/portfolios");
   }
 
   caclulatePortfolioValue() {
@@ -79,12 +79,12 @@ export class PortfolioService {
   updatePotfolio(portfolio: Portfolio) {
     this.sendUpdate(portfolio)
     console.log(portfolio)
-    // return this.http.put<Portfolio>("http://localhost:8080/api/portfolios", portfolio)
-    return this.http.put<Portfolio>("http://cryptoknight2-env.eba-3uzzfaem.us-east-2.elasticbeanstalk.com/portfolios", portfolio)
+    return this.http.put<Portfolio>("http://localhost:8080/api/portfolios", portfolio)
+    // return this.http.put<Portfolio>("http://cryptoknight2-env.eba-3uzzfaem.us-east-2.elasticbeanstalk.com/portfolios", portfolio)
   }
 
 
-  logTransaction(inCurrency: string, inCurrencyAmount: number, outCurrency: string, outCurrencyAmount: number, portfolio: Portfolio) {
+  logTransaction(inCurrency: string, inCurrencyAmount: number, outCurrency: string, outCurrencyAmount: number, portfolio: number) {
     const transaction = {
       transactionInCurrency: inCurrency,
       transactionInAmount: inCurrencyAmount,
@@ -92,7 +92,7 @@ export class PortfolioService {
       transactionOutAmount: outCurrencyAmount,
       portfolio: portfolio
     }
-    // return this.http.post<Transaction>("http://localhost:8080/api/transactions", transaction)
-    return this.http.post<Transaction>("http://cryptoknight2-env.eba-3uzzfaem.us-east-2.elasticbeanstalk.com/transactions", transaction)
+    return this.http.post<Transaction>("http://localhost:8080/api/transactions", transaction)
+    // return this.http.post<Transaction>("http://cryptoknight2-env.eba-3uzzfaem.us-east-2.elasticbeanstalk.com/transactions", transaction)
   }
 }
