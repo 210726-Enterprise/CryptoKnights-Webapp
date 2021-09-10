@@ -1,11 +1,10 @@
-export interface Portfolio 
-{
-  id: number;
-  porfolio_name: string;
-  bitcoin: number;
-  ethereum: number;
-  dogecoin: number;
-  usd: number;
-  transactions: [];
-  users: [];
-}
+export interface Portfolio {
+    portfolioId: number;
+    porfolio_name: string;
+    bitcoin: number;
+    ethereum: number;
+    dogecoin: number;
+    usd: number;
+    transaction: [];
+    users: [];
+  }

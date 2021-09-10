@@ -9,7 +9,7 @@ import { Transaction } from './transaction';
 })
 export class PortfolioService {
 
-  private url: string = `http://localhost:8080/api/portfolios/1`
+
   private portfolioState = new Subject<any>();
   private cryptoValues: any;
 
@@ -23,11 +23,14 @@ export class PortfolioService {
     return this.portfolioState.asObservable();
   }
 
-  getPortfolio(): Observable<Portfolio> {
-    return this.http.get<Portfolio>(this.url);
+  getPortfolio(id: Number): Observable<Portfolio> {
+    const url = `http://localhost:8080/api/portfolios/${id}`
+    return this.http.get<Portfolio>(url);
   }
 
-
+  getAllPortfolio(): Observable<Portfolio[]> {
+    return this.http.get<Portfolio[]>("http://cryptoknight2-env.eba-3uzzfaem.us-east-2.elasticbeanstalk.com/portfolios");
+  }
 
   caclulatePortfolioValue() {
     this.getCryptoValues().subscribe(data => this.cryptoValues = data);
@@ -80,12 +83,6 @@ export class PortfolioService {
       transactionOutAmount: outCurrencyAmount,
       portfolio: portfolio
     }
-
-    console.log(transaction)
-
     return this.http.post<Transaction>("http://localhost:8080/api/api/", transaction)
-
   }
-
-
 }

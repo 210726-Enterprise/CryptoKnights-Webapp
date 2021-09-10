@@ -1,7 +1,9 @@
+<app-navbar></app-navbar>
 <h2>Login</h2>
 
 Username: <input type="text" id="username" name="username" #username>
 <br><br>
 Password: <input type="password" id="password" name="password" #password>
 <br><br>
-<button type="button" (click)="login(username.value, password.value)" *ngIf="!loginGuardService.isLoggedIn">Log in</button>
+<button type="button" (click)="login(username.value, password.value)" *ngIf="!loginGuardService.isLoggedIn">Log
+    in</button>
