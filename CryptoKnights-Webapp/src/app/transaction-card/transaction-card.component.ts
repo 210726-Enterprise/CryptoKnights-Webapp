@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Portfolio } from '../portfolio';
 import { PortfolioService } from '../portfolio.service';
-import { User } from '../User';
+import { User } from '../user';
+
 
 @Component({
   selector: 'app-transaction-card',
@@ -13,10 +14,10 @@ export class TransactionCardComponent implements OnInit {
   constructor(private service: PortfolioService) { }
 
   ngOnInit(): void {
-    this.service.getPortfolio().subscribe(data => this.portfolio = data);
+    // this.service.getPortfolio().subscribe(data => this.portfolio = data);
   }
 
-  portfolio: Portfolio;
+  @Input() portfolio: Portfolio;
   depositAmount: number = 0;
   withdrawalAmount: number = 0;
   inCurrency: string;
@@ -26,7 +27,9 @@ export class TransactionCardComponent implements OnInit {
   // currentUser: User;
 
   makeDeposit() {
+    
     this.portfolio.usd += this.depositAmount;
+    // this.portfolio.users = userArray;
     this.service.updatePotfolio(this.portfolio).subscribe(data => this.portfolio = data);
     this.depositAmount = 0;
   }
@@ -34,7 +37,7 @@ export class TransactionCardComponent implements OnInit {
   makeWithdrawal() {
     this.portfolio.usd -= this.withdrawalAmount;
     this.service.updatePotfolio(this.portfolio).subscribe(data => this.portfolio = data);
-    this.depositAmount = 0;
+    this.withdrawalAmount = 0;
   }
 
   async setInCurrencyAmount() {

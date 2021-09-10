@@ -1,7 +1,12 @@
-<h2>Login</h2>
+<app-navbar></app-navbar>
 
-Username: <input type="text" id="username" name="username" #username>
-<br><br>
-Password: <input type="password" id="password" name="password" #password>
-<br><br>
-<button type="button" (click)="login(username.value, password.value)" *ngIf="!loginGuardService.isLoggedIn">Log in</button>
+<div class="col-6 offset-3">
+    <h2>Login</h2>
+    <label for="username" class="form-label">Username:</label>
+    <input type="text" class="form-control" id="username" name="username" #username>
+    <label for="password" class="form-label">Password:</label>
+    <input type="password" id="password" class="form-control mb-3" name="password" #password>
+    <button type="button" class="btn btn-success" (click)="login(username.value, password.value)"
+        *ngIf="!loginGuardService.isLoggedIn">Log
+        in</button>
+</div>

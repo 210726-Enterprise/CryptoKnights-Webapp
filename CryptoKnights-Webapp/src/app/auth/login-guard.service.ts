@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import { tap, delay } from 'rxjs/operators';
 import { User } from '../user';
 
@@ -11,16 +11,18 @@ import { User } from '../user';
 })
 export class LoginGuardService 
 {
-  private usersURL = "http://cryptoknight-webapp.s3-website.us-east-2.amazonaws.com/users/username/"
+  private usersURL = "http://cryptoknight2-env.eba-3uzzfaem.us-east-2.elasticbeanstalk.com/users/username/"
+  // private usersURL = "http://localhost:8080/api/users/username/"
 
   httpOptions = 
   {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
+  private userState = new Subject<any>();
   isLoggedIn = false;
   currUser: User | undefined;
-  redirectUrl: string | null = "/test";
+  redirectUrl: string | null = "/user";
 
   constructor(private http: HttpClient, public router: Router) { };
 
@@ -40,6 +42,7 @@ export class LoginGuardService
             this.currUser = foundUser;
 
             this.isLoggedIn = true;
+            this.sendUpdate(this.currUser)
             const navigationExtras: NavigationExtras = 
             {
               queryParamsHandling: 'preserve',
@@ -50,9 +53,22 @@ export class LoginGuardService
         });
   }
 
+  sendUpdate(currUser?: User) {
+    this.userState.next(currUser);
+  }
+
+  getUpdate(): Observable<any> {
+    return this.userState.asObservable();
+  }
+
+  getCurrentUser() {
+    return this.currUser;
+  }
+
   logout(): void {
     this.isLoggedIn = false;
     this.currUser = undefined;
+    this.sendUpdate(this.currUser)
     this.router.navigate(['']);
   }
 }

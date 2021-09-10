@@ -22,7 +22,7 @@ export class NewPortfolioComponent implements OnInit {
     { 
       return; 
     }
-    this.createPortfolioService.addPortfolio({ porfolio_name } as Portfolio)
+    this.createPortfolioService.addPortfolio({ porfolio_name } as unknown as Portfolio)
       .subscribe(portfolio => {console.log(portfolio)});
   }
 }

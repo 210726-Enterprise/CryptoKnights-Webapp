@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { LoginGuardService } from '../auth/login-guard.service';
+import { User } from '../user';
 
 @Component({
   selector: 'app-navbar',
@@ -7,11 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  user = true;
+  loggedIn: boolean;
+  private observeUser: Subscription;
 
-  constructor() { }
+  constructor(private loginService: LoginGuardService) { }
 
   ngOnInit(): void {
+    this.loginService.isLoggedIn ? this.loggedIn = true : this.loggedIn = false;
+    //   this.currUser = this.loginService.getCurrentUser();
+    //   this.currUser = this.loginService.getUpdate().subscribe(message => this.currUser = message)
+  }
+
+  logout() {
+      this.loginService.logout()
   }
 
 }
