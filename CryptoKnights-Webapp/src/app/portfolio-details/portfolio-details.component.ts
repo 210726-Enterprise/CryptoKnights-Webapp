@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Portfolio } from '../portfolio';
 import { PortfolioService } from '../portfolio.service';
-import { Transaction } from '../transaction';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-portfolio-details',
@@ -12,24 +12,27 @@ import { Transaction } from '../transaction';
 })
 export class PortfolioDetailsComponent implements OnInit {
 
-  portfolio: Portfolio;
+  @Input() portfolio: Portfolio;
   cryptoValues: any;
   totalValue: number;
   private observePortfolio: Subscription;
+  portfolioId: number;
 
-  constructor(private service: PortfolioService) { 
+  constructor(private service: PortfolioService, private route: ActivatedRoute) { 
     this.observePortfolio = this.service.getUpdate().subscribe(message => this.portfolio = message)
    }
 
   ngOnInit(): void {
-    this.service.getPortfolio().subscribe(data => this.portfolio = data);
     this.service.getCryptoValues().subscribe(data => this.cryptoValues = data)
     this.getTotalValue()
-    console.log(this.cryptoValues)
   }
 
   getTotalValue() {
-    this.totalValue = this.cryptoValues.bitcoin.usd + this.cryptoValues.ethereum.usd + this.cryptoValues.usd + this.portfolio.usd;
+    this.totalValue = 
+        this.cryptoValues.bitcoin.usd * this.portfolio.bitcoin 
+      + this.cryptoValues.ethereum.usd * this.portfolio.ethereum
+      + this.cryptoValues.dogecoin * this.portfolio.dogecoin
+      + this.portfolio.usd;
     console.log(this.totalValue)
   }
 

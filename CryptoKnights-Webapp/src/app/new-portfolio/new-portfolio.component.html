@@ -1,10 +1,12 @@
-<h3>Create a New Portfolio</h3>
+<app-navbar></app-navbar>
 
-<div>
-    <label for="new-portfolio">Input name for portfolio here: </label>
-    <input id="new-portfolio" #portfolioName />
-    <br><br>
-    <button class="add-button" (click)="add(portfolioName.value); portfolioName.value=''">
-      Add Portfolio
-    </button>
+
+<div class="col-6 offset-3">
+  <h3>Create a New Portfolio</h3>
+  <label class="form-label" for="new-portfolio">Input name for portfolio here: </label>
+  <input class="form-control" id="new-portfolio" #portfolioName />
+  <br><br>
+  <button class="add-button btn btn-success btn-sm" (click)="add(portfolioName.value); portfolioName.value=''">
+    Add Portfolio
+  </button>
 </div>

@@ -1,6 +1,8 @@
+import { Portfolio } from "./portfolio";
+
 export interface Transaction {
     transactionId: number;
-    portfolio: number;
+    portfolio: Portfolio;
     transactionDateTime: Date;
     transactionInCurrency: number;
     transactionInAmount: number;

@@ -9,6 +9,7 @@ export class RegisterUserService {
 
   async saveUser(newUser: { username: string; password: string; firstName: string; lastName: string; email: string; }) {
     console.log("in here")
+    
     const user = await fetch("http://cryptoknight2-env.eba-3uzzfaem.us-east-2.elasticbeanstalk.com/users", {
       method: "POST",
       headers: {

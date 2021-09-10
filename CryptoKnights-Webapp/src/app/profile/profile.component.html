@@ -1,0 +1,27 @@
+<app-navbar></app-navbar>
+<div class="container mb-3">
+    <h1>Viewing Portfolios for {{user.username}}</h1>
+</div>
+<div class="container d-flex flex-wrap align-items-start">
+    <div *ngFor="let p of portfolios" class="w-25 card m-2">
+        <h5 class="card-header">{{p.porfolio_name}}</h5>
+        <div class="card-body">
+            <h5 class="card-title">Investments:</h5>
+            <ul>
+                <li *ngIf="p.bitcoin > 0">
+                    Bitcoin
+                </li>
+                <li *ngIf="p.ethereum > 0">
+                    Ethereum
+                </li>
+                <li *ngIf="p.dogecoin > 0">
+                    Dogecoin
+                </li>
+                <li *ngIf="p.usd > 0">
+                    USD
+                </li>
+            </ul>
+            <a routerLink="/portfolio/{{p.portfolioId}}" class="btn btn-primary">View Portfolio</a>
+        </div>
+    </div>
+</div>
